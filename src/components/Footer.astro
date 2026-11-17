@@ -1,0 +1,27 @@
+---
+import { site } from '../data/site';
+import Leaf from './Leaf.astro';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div><a class="foot-brand" href={import.meta.env.BASE_URL + ''}><Leaf width={25} />{site.name} <span>| {site.profession}</span></a><p>Онлайн-консультации по России</p></div>
+    <nav class="documents" aria-label="Правовые документы">
+      <a href={import.meta.env.BASE_URL + 'privacy/'}>Политика обработки персональных данных</a>
+      <a href={import.meta.env.BASE_URL + 'consent/'}>Согласие на обработку персональных данных</a>
+      <a href={import.meta.env.BASE_URL + 'terms/'}>Условия оказания услуг</a>
+    </nav>
+    <div class="copy">{site.contacts.primary && <a href={site.contacts.primary.href}>{site.contacts.primary.label}</a>}<span>© {year} {site.name}</span></div>
+  </div>
+</footer>
+<style>
+  .site-footer { padding: 2.5rem 0; color: var(--ink, #203f5d); }
+  .foot-grid { display: grid; gap: 1.8rem; align-items: start; }
+  .foot-brand { display: inline-flex; align-items: center; gap: .45rem; font-family: var(--serif, Georgia, serif); font-size: 1.75rem; font-weight: 400; text-decoration: none; }
+  .foot-brand span { font-family: var(--sans, Arial, sans-serif); font-size: .85rem; }
+  .foot-grid p, .documents, .copy { font-size: .82rem; color: #4b677d; }
+  .foot-grid p { margin: .55rem 0 0; }
+  .documents, .copy { display: grid; justify-items: start; gap: .45rem; }
+  .documents a, .copy a { text-underline-offset: .23em; }
+  @media(min-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr auto; } }
+</style>

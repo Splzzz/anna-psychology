@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Leaf from '../components/Leaf.astro';
+import { legalDocuments } from '../data/legal';
+import { site } from '../data/site';
+
+export function getStaticPaths() {
+  return legalDocuments.map(document => ({ params: { legal: document.slug }, props: { document } }));
+}
+const { document } = Astro.props;
+---
+<Base title={document.title + ' — ' + site.name + ', психолог'} description={document.description} path={'/' + document.slug + '/'} noindex>
+  <a class="skip" href="#main-content">Перейти к документу</a>
+  <header class="legal-header">
+    <div class="doc-wrap"><a class="wordmark" href={import.meta.env.BASE_URL + ''}><Leaf width={25} />{site.name} <span>| {site.profession}</span></a><a class="back" href={import.meta.env.BASE_URL + ''}><span aria-hidden="true">←</span> На главную</a></div>
+  </header>
+  <main id="main-content" class="doc-wrap doc-body">
+    <h1>{document.title}</h1>
+    <p class="status">{document.status}</p>
+    {document.sections.map(section => <section>
+      <h2>{section.heading}</h2>
+      {section.paragraphs.map(text => <p>{text}</p>)}
+      {section.todo && <p class="todo"><strong>TODO</strong> {section.todo}</p>}
+    </section>)}
+    <nav class="related" aria-label="Другие документы">
+      {legalDocuments.filter(item => item.slug !== document.slug).map(item => <a href={import.meta.env.BASE_URL + item.slug + '/'}>{item.title}</a>)}
+      <a href={import.meta.env.BASE_URL + '#contacts'}>Вернуться к контактам</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .doc-wrap { width: min(100% - 2.5rem, 52rem); margin-inline: auto; }
+  .legal-header { background: #fff; border-bottom: 1px solid #d5e2ea; }
+  .legal-header .doc-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
+  .legal-header a { color: #203f5d; text-decoration: none; }
+  .wordmark { display: inline-flex; align-items: center; gap: .45rem; font: 1.7rem var(--serif, Georgia, serif); white-space: nowrap; }
+  .wordmark span { font: .88rem var(--sans, Arial, sans-serif); }
+  .back { padding-block: .75rem; font-size: .91rem; }
+  .doc-body { padding-block: clamp(2.5rem, 7vw, 5.5rem); color: #203f5d; }
+  h1, h2 { font-family: var(--serif, Georgia, serif); font-weight: 400; line-height: 1.1; letter-spacing: -.035em; text-wrap: balance; overflow-wrap: anywhere; }
+  h1 { font-size: clamp(2.25rem, 5.4vw, 4.4rem); margin: 0 0 1.7rem; }
+  h2 { font-size: clamp(1.55rem, 3vw, 2.15rem); margin: 0 0 .9rem; }
+  p { margin: 0; max-width: 73ch; font-size: 1rem; line-height: 1.7; }
+  p + p { margin-top: .8rem; }
+  .doc-body section { margin-top: 2.1rem; padding-top: 1.8rem; border-top: 1px solid #d5e2ea; }
+  .status { max-width: none; padding: 1rem 1.3rem; border-radius: .8rem; background: #e6eff6; }
+  .todo { color: #51667a; }
+  .todo strong { font-size: .8em; letter-spacing: .04em; margin-right: .3em; }
+  .related { display: grid; justify-items: start; gap: .9rem; margin-top: 2.6rem; padding-top: 1.5rem; border-top: 1px solid #cbdbe6; }
+  .related a { color: #245b82; text-underline-offset: .22em; }
+</style>

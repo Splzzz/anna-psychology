@@ -1,0 +1,189 @@
+---
+import { site, rubles } from '../data/site';
+import { content } from '../data/content';
+import aboutSmall from '../assets/photos/about-480.webp?url';
+import aboutMedium from '../assets/photos/about-720.webp?url';
+import aboutLarge from '../assets/photos/about-960.webp?url';
+import aboutJpeg from '../assets/photos/about-720.jpg?url';
+
+const { audience, about, process, prices, education, faq, contact } = content;
+const contactHref = site.contacts.primary?.href ?? '#booking';
+---
+
+<section class="audience band" aria-labelledby="audience-title">
+  <div class="wrap spread">
+    <div>
+      <h2 id="audience-title" class="eyebrow">{audience.title}</h2>
+      <p class="standfirst">{audience.lead}</p>
+    </div>
+    <div class="prose">{audience.paragraphs.map(text => <p>{text}</p>)}</div>
+  </div>
+</section>
+
+<section id="about" class="about band" aria-labelledby="about-title">
+  <div class="wrap about-grid">
+    <picture class="portrait">
+      <source srcset={`${aboutSmall} 480w, ${aboutMedium} 720w, ${aboutLarge} 960w`} type="image/webp" sizes="(min-width: 1200px) 420px, (min-width: 760px) 38vw, (min-width: 540px) 440px, 90vw" />
+      <img src={aboutJpeg} width="720" height="960" alt="Анна за столиком на открытой террасе" loading="lazy" decoding="async" />
+    </picture>
+    <div class="about-copy">
+      <h2 id="about-title" class="section-title">{about.title}</h2>
+      <p class="about-intro">{about.intro}</p>
+      <div class="prose">{about.paragraphs.map(text => <p>{text}</p>)}</div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="process band" aria-labelledby="process-title">
+  <div class="wrap">
+    <div class="section-top">
+      <h2 id="process-title" class="section-title">{process.title}</h2>
+      <span class="duration">По видеосвязи · {site.pricing.minutes} минут</span>
+    </div>
+    <ol class="steps">
+      {process.steps.map((step, index) => <li>
+        <span class="step-mark" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <h3>{step.title}</h3><p>{step.text}</p>
+      </li>)}
+    </ol>
+    <p class="privacy-note">
+      <svg width="19" height="22" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 2 21 6v6c0 5-3.5 9-9 12-5.5-3-9-7-9-12V6z"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+      {process.note}
+    </p>
+  </div>
+</section>
+
+<section id="prices" class="prices band" aria-labelledby="prices-title">
+  <div class="wrap">
+    <h2 id="prices-title" class="section-title">{prices.title}</h2>
+    <div class="price-grid">
+      <article class="price-card first">
+        <div class="price-top"><h3>{prices.firstTitle}</h3><span class="discount">{prices.discountLabel}</span></div>
+        <div class="price-line"><span>{rubles(site.pricing.first)}</span><small>/ {site.pricing.minutes} минут</small></div>
+        <p>{prices.firstDescription}</p>
+        <a href={contactHref} data-booking={site.contacts.primary ? undefined : true} class="button booking-cta">{site.cta.price}<span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="price-card">
+        <div class="price-top"><h3>{prices.regularTitle}</h3></div>
+        <div class="price-line"><span>{rubles(site.pricing.regular)}</span><small>/ {site.pricing.minutes} минут</small></div>
+        <p>{prices.regularDescription}</p>
+      </article>
+    </div>
+    <div class="conditions"><h3>Бронирование и перенос</h3><div class="prose">{prices.terms.map(text => <p>{text}</p>)}<a href={import.meta.env.BASE_URL + 'terms/'}>Условия оказания услуг</a></div></div>
+  </div>
+</section>
+
+<section class="education band" aria-labelledby="education-title">
+  <div class="wrap split">
+    <h2 id="education-title" class="section-title">{education.title}</h2>
+    <ul class="qualifications">
+      {education.records.map(record => <li><h3>{record.title}</h3><p>{record.text}</p></li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="faq band" id="faq" aria-labelledby="faq-title">
+  <div class="wrap split">
+    <h2 id="faq-title" class="section-title">Вопросы<br /> и ответы</h2>
+    <div class="questions">
+      {faq.map((item, i) => <details>
+        <summary aria-controls={'answer-' + i}>{item.question}<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p id={'answer-' + i}>{item.answer}</p>
+      </details>)}
+    </div>
+  </div>
+</section>
+
+<section id="contacts" class="contact band" aria-labelledby="contact-title">
+  <div class="wrap contact-inner">
+    <h2 id="contact-title" class="section-title">{contact.title}</h2>
+    <p>{contact.text}</p>
+    <a href={contactHref} data-booking={site.contacts.primary ? undefined : true} class="button booking-cta">{site.cta.write}<span aria-hidden="true">↗</span></a>
+    {!site.contacts.primary && <small class="availability">Онлайн-запись пока не открыта.</small>}
+    {site.contacts.socials.length > 0 && <div class="other-contacts">{site.contacts.socials.map(link => <a href={link.href}>{link.label}</a>)}</div>}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('.questions details').forEach(details => {
+    const summary = details.querySelector('summary');
+    const update = () => summary?.setAttribute('aria-expanded', String(details.open));
+    update();
+    details.addEventListener('toggle', update);
+  });
+</script>
+
+<style>
+  .band { padding-block: clamp(3.7rem, 7.7vw, 7.5rem); color: var(--ink, #203f5d); }
+  .section-title, .standfirst, .price-line > span, .steps h3, .price-card h3, .about-intro {
+    font-family: var(--serif, Georgia, serif); font-weight: 400;
+  }
+  .section-title { margin: 0; font-size: clamp(2.2rem, 4vw, 4rem); letter-spacing: -.045em; line-height: 1.09; text-wrap: balance; }
+  .prose, .steps p, .price-card > p, .qualifications p, .questions p, .contact-inner > p { color: var(--muted, #486a83); line-height: 1.7; }
+  .prose p, .steps p, .price-card p, .qualifications p, .questions p { margin: 0; }
+  .prose p + p { margin-top: 1em; }
+  .audience { background: #edf4f8; }
+  .spread, .about-grid, .split, .conditions { display: grid; gap: 2rem; align-items: start; }
+  .standfirst { max-width: 21em; font-size: clamp(1.85rem, 3.1vw, 3rem); line-height: 1.17; letter-spacing: -.035em; margin: 1.1rem 0 0; }
+  .about-grid { align-items: center; }
+  .portrait { display: block; max-width: 440px; width: 100%; }
+  .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; object-position: 50% 45%; border-radius: 1.4rem; }
+  .about-copy { max-width: 640px; }
+  .about-intro { font-size: clamp(1.38rem, 2.2vw, 2rem); line-height: 1.4; letter-spacing: -.025em; margin: 1.5rem 0 1.3rem; }
+  .process { background: #f1f6fa; }
+  .section-top { display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; justify-content: space-between; align-items: baseline; }
+  .duration, .discount { font-size: .875rem; color: #40617b; }
+  .steps { display: grid; grid-template-columns: 1fr; list-style: none; padding: 0; margin: clamp(2rem, 4vw, 3.75rem) 0 2.1rem; gap: 1.8rem; }
+  .steps li { border-top: 1px solid #b6cad8; padding-top: 1.2rem; }
+  .step-mark { color: #466982; font-size: .86rem; letter-spacing: .1em; }
+  .steps h3, .price-card h3 { margin: 1.2rem 0 .7rem; letter-spacing: -.035em; line-height: 1.2; font-size: clamp(1.6rem, 2.4vw, 2.15rem); }
+  .privacy-note { display: flex; align-items: flex-start; gap: .8rem; color: #4b677d; font-size: .92rem; max-width: 74ch; line-height: 1.6; margin: 0; }
+  .privacy-note svg { flex-shrink: 0; margin-top: 2px; }
+  .price-grid { display: grid; gap: 1rem; margin-top: clamp(1.8rem, 4vw, 3rem); }
+  .price-card { border-radius: 1.4rem; border: 1px solid #cddce7; background: #fff; padding: clamp(1.4rem, 3vw, 2.8rem); }
+  .price-card.first { background: #e5eff7; border-color: #d4e4f1; }
+  .price-top { display: flex; gap: .75rem 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .price-card h3 { margin: 0; }
+  .discount { border-radius: 99px; padding: .35em .75em; background: #fff; white-space: nowrap; }
+  .price-line { display: flex; align-items: baseline; gap: .6rem; margin: 1.45rem 0 .7rem; flex-wrap: wrap; }
+  .price-line > span { font-size: clamp(2.4rem, 4vw, 3.8rem); line-height: 1.15; letter-spacing: -.05em; white-space: nowrap; }
+  .price-line small { font-size: 1rem; color: var(--muted, #486a83); }
+  .price-card > p { max-width: 39ch; }
+  .booking-cta { display: inline-flex; gap: .9rem; align-items: center; margin-top: 1.6rem; }
+  .booking-cta span { font-family: Arial, sans-serif; font-size: 1.15em; font-weight: 400; }
+  .conditions { margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid #d6e2eb; gap: 1rem; }
+  .conditions h3, .qualifications h3 { margin: 0; font-weight: 550; font-size: 1.12rem; }
+  .conditions .prose { max-width: 70ch; font-size: .94rem; }
+  .conditions p + p { margin-top: .4rem; }
+  .conditions a { display: inline-block; text-decoration: underline; text-underline-offset: .2em; margin-top: .6rem; }
+  .education { background: #f0f5f8; }
+  .qualifications { list-style: none; padding: 0; margin: 0; display: grid; }
+  .qualifications li, .questions details { border-top: 1px solid #cbdbe6; }
+  .qualifications li:last-child, .questions details:last-child { border-bottom: 1px solid #cbdbe6; }
+  .qualifications li { padding: 1.25rem 0; }
+  .qualifications p { margin-top: .35rem; }
+  .questions summary { display: flex; justify-content: space-between; gap: 1.2rem; align-items: center; cursor: pointer; font-weight: 500; min-height: 3.5rem; padding: 1.3rem 0; list-style: none; line-height: 1.4; }
+  .questions summary::-webkit-details-marker { display: none; }
+  .faq-sign { width: 1.55rem; height: 1.55rem; flex: none; display: grid; place-items: center; position: relative; }
+  .faq-sign::before, .faq-sign::after { content: ''; position: absolute; width: 13px; height: 1px; background: currentColor; }
+  .faq-sign::after { transform: rotate(90deg); transition: transform .2s ease; }
+  .questions details[open] .faq-sign::after { transform: rotate(0); }
+  .questions p { margin-bottom: 1.35rem; max-width: 66ch; }
+  .questions details[open] p { animation: appear .22s ease; }
+  @keyframes appear { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
+  .contact { background: radial-gradient(ellipse at 50% 10%, #f5f9fc, transparent 75%), #e4eff7; text-align: center; }
+  .contact-inner .section-title { max-width: 19ch; margin-inline: auto; }
+  .contact-inner > p { max-width: 52ch; margin: 1.5rem auto 0; }
+  .availability { display: block; color: #48637a; margin-top: .75rem; font-size: .84rem; }
+  .other-contacts { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.4rem; }
+  @media(min-width: 760px) {
+    .spread { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 8vw, 8rem); align-items: center; }
+    .about-grid { grid-template-columns: .85fr 1.3fr; gap: clamp(3rem, 8vw, 8rem); }
+    .steps { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .price-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .conditions { grid-template-columns: .68fr 1.32fr; }
+    .split { grid-template-columns: .8fr 1.2fr; gap: clamp(3rem, 6vw, 6rem); }
+    .split .section-title { max-width: 12ch; }
+  }
+  @media(prefers-reduced-motion: reduce) { .questions details[open] p { animation: none; } .faq-sign::after { transition: none; } }
+</style>

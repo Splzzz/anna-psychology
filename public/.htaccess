@@ -1,0 +1,10 @@
+# Apache 2.4: правила кеширования для статической сборки Astro.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/_astro/" astro_versioned=1
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable" env=astro_versioned
+    <FilesMatch "\.(html|xml|txt)$">
+      Header set Cache-Control "no-cache"
+    </FilesMatch>
+  </IfModule>
+</IfModule>
