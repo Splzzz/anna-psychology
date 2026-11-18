@@ -16,7 +16,7 @@ import fallback from '../assets/photos/hero-720.jpg?url';
       <h1 id="welcome">{intro.title[0]}<br/>{intro.title[1]}<br/><em>{intro.title[2]}<svg viewBox="0 0 300 15" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12Q130 -2 296 6M27 13Q150 2 247 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></em></h1>
       <p class="intro">Я {site.name}, психолог. {intro.body}</p>
       <div class="hero-actions">
-        <a class="button" href={site.contacts.primary?.href ?? '#booking'} data-booking={!site.contacts.primary || undefined}>{site.cta.first}<Icon name="arrow"/></a>
+        <a class="button" href={site.contacts.primary?.href ?? '#booking'} data-booking>{site.cta.first}<Icon name="arrow"/></a>
         <a class="learn" href="#process">{site.cta.details}<Icon name="down" size={15}/></a>
       </div>
       <ul class="facts">

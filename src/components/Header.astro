@@ -11,7 +11,7 @@ import Icon from './Icon.astro';
       {navigation.map(link => <a href={link.href}>{link.label}</a>)}
     </nav>
     <div class="header-actions">
-      <a href={site.contacts.primary?.href ?? '#booking'} data-booking={!site.contacts.primary || undefined} class="header-cta">{site.cta.book}<Icon name="diagonal" size={15}/></a>
+      <a href={site.contacts.primary?.href ?? '#booking'} data-booking class="header-cta">{site.cta.book}<Icon name="diagonal" size={15}/></a>
       <button type="button" class="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Открыть меню"><Icon name="menu" size={23} /></button>
     </div>
   </div>

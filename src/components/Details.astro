@@ -76,7 +76,7 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
         <div class="price-top"><h3>{prices.firstTitle}</h3><span class="discount">{prices.discountLabel}</span></div>
         <div class="price-line"><span>{rubles(site.pricing.first)}</span><small>/ {site.pricing.minutes} минут</small></div>
         <p>{prices.firstDescription}</p>
-        <a href={contactHref} data-booking={site.contacts.primary ? undefined : true} class="button booking-cta">{site.cta.price}<span aria-hidden="true">↗</span></a>
+        <a href={contactHref} data-booking class="button booking-cta">{site.cta.price}<span aria-hidden="true">↗</span></a>
       </article>
       <article class="price-card">
         <div class="price-top"><h3>{prices.regularTitle}</h3></div>
@@ -129,9 +129,8 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
   <div class="wrap contact-inner">
     <h2 id="contact-title" class="section-title">{contact.title}</h2>
     <p>{contact.text}</p>
-    <a href={contactHref} data-booking={site.contacts.primary ? undefined : true} class="button booking-cta">{site.cta.write}<span aria-hidden="true">↗</span></a>
+    <a href={contactHref} data-booking class="button booking-cta">{site.cta.write}<span aria-hidden="true">↗</span></a>
     {!site.contacts.primary && <small class="availability">Онлайн-запись пока не открыта.</small>}
-    {site.contacts.socials.length > 0 && <div class="other-contacts">{site.contacts.socials.map(link => <a href={link.href}>{link.label}</a>)}</div>}
   </div>
 </section>
 
@@ -297,7 +296,6 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
   .contact-inner .section-title { max-width: 19ch; margin-inline: auto; }
   .contact-inner > p { max-width: 52ch; margin: 1.5rem auto 0; }
   .availability { display: block; color: #48637a; margin-top: .75rem; font-size: .84rem; }
-  .other-contacts { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.4rem; }
   @media(min-width: 760px) {
     .spread { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 8vw, 8rem); align-items: center; }
     .about-grid { grid-template-columns: .85fr 1.3fr; gap: clamp(3rem, 8vw, 8rem); }

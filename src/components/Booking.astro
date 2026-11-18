@@ -1,16 +1,17 @@
 ---
-import { site, rubles } from '../data/site';
+import { site } from '../data/site';
 import Icon from './Icon.astro';
 import Leaf from './Leaf.astro';
 ---
-{!site.contacts.primary && <dialog id="booking" aria-labelledby="booking-title" aria-describedby="booking-message">
+<dialog id="booking" aria-labelledby="booking-title" aria-describedby="booking-message">
   <button type="button" class="close" aria-label="Закрыть окно"><Icon name="close" /></button>
   <Leaf width={38}/>
-  <h2 id="booking-title">Первая встреча</h2>
-  <p class="meeting">Онлайн · {site.pricing.minutes} минут · {rubles(site.pricing.first)}</p>
-  <p id="booking-message">Запись пока не открыта. Когда Анна подключит свой канал связи, здесь можно будет написать ей и выбрать время встречи.</p>
-  <a class="button" href="#prices">Посмотреть условия <Icon name="arrow"/></a>
-</dialog>}
+  <h2 id="booking-title">Написать Анне</h2>
+  <p id="booking-message">Выберите, где вам удобно общаться.</p>
+  <div class="options">
+    {[site.contacts.primary, ...site.contacts.socials].map(contact => contact && <a class="button" href={contact.href}>{contact.label}<Icon name="arrow"/></a>)}
+  </div>
+</dialog>
 <script>
   const dialog = document.querySelector<HTMLDialogElement>('#booking');
   if (dialog) {
@@ -23,7 +24,6 @@ import Leaf from './Leaf.astro';
       });
     });
     dialog.querySelector('button')?.addEventListener('click', () => dialog.close());
-    dialog.querySelector('a')?.addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', e => {
       const bounds = dialog.getBoundingClientRect();
       if (e.target === dialog && (e.clientX < bounds.left || e.clientX > bounds.right || e.clientY < bounds.top || e.clientY > bounds.bottom)) dialog.close();
@@ -45,6 +45,5 @@ import Leaf from './Leaf.astro';
   @keyframes booking-in { from { opacity: 0; } to { opacity: 1; } }
   h2 { font-size: 42px; margin-top: 9px; }
   p { color: var(--muted); font-size: 14px; }
-  .meeting { margin: 8px 0 18px; font-weight: 600; }
-  .button { margin-top: 20px; }
+  .options { display: grid; gap: 10px; margin-top: 20px; }
 </style>
