@@ -145,6 +145,7 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
 </script>
 
 <style>
+  .faq, .contact { --faq-background: #f3f7fa; }
   .band { padding-block: clamp(3.7rem, 7.7vw, 7.5rem); color: var(--ink, #203f5d); }
   .section-title, .standfirst, .price-line > span, .steps h3, .price-card h3, .about-intro {
     font-family: var(--serif, Georgia, serif); font-weight: 400;
@@ -249,7 +250,7 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
     .qualifications li { grid-template-columns: 81px minmax(0, 1fr); align-items: start; gap: .85rem; }
     .qualifications h3 { font-size: 1.4rem; }
   }
-  .faq { background: #f3f7fa; }
+  .faq { background: var(--faq-background); }
   .faq-groups { margin-top: 2rem; }
   .questions h3 { margin: 0 0 1rem; font: 500 clamp(1.65rem, 2.2vw, 2rem)/1.2 var(--serif); }
   .questions summary { display: flex; justify-content: space-between; gap: 1.2rem; align-items: center; cursor: pointer; font-weight: 500; min-height: 3.5rem; padding: 1.3rem 0; list-style: none; line-height: 1.4; }
@@ -277,7 +278,7 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
     z-index: -1;
     pointer-events: none;
     background:
-      linear-gradient(to bottom, #fcfdfe, transparent 12%, transparent 88%, #fcfdfe),
+      linear-gradient(to bottom, var(--faq-background), transparent 18%, transparent 88%, #fcfdfe),
       linear-gradient(to right, rgb(252 253 254 / 35%), transparent 12%, transparent 88%, rgb(252 253 254 / 35%));
   }
   @supports (animation-timeline: view()) {
