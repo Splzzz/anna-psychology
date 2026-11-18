@@ -33,7 +33,7 @@ export const site: SiteSettings = {
   serviceArea: 'Россия',
   contacts: {
     primary: { label: 'ВКонтакте', href: 'https://vk.ru/anna_yakurnova' },
-    socials: [{ label: 'Telegram @Nnyrka', href: 'https://t.me/Nnyrka' }],
+    socials: [{ label: 'Telegram', href: 'https://t.me/Nnyrka' }],
   },
   pricing,
   cta: {
