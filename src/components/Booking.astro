@@ -36,6 +36,13 @@ import Leaf from './Leaf.astro';
   dialog:target:not([open]) { display: block; position: fixed; inset: 0; margin: auto; height: fit-content; z-index: 8; }
   dialog:target:not([open]) button { display: none; }
   .close { position: absolute; right: 12px; top: 12px; display: grid; place-items: center; width: 40px; height: 40px; background: transparent; border: 1px solid #cad9e3; border-radius: 50%; }
+  .close { transition: background-color .18s; }
+  .close:active { background-color: #dbe9f3; }
+  @media (hover: hover) and (pointer: fine) { .close:hover { background-color: #dbe9f3; } }
+  @media (prefers-reduced-motion: no-preference) {
+    dialog[open], dialog[open]::backdrop { animation: booking-in 170ms ease-out; }
+  }
+  @keyframes booking-in { from { opacity: 0; } to { opacity: 1; } }
   h2 { font-size: 42px; margin-top: 9px; }
   p { color: var(--muted); font-size: 14px; }
   .meeting { margin: 8px 0 18px; font-weight: 600; }

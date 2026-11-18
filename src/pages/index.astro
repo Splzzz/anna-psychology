@@ -18,3 +18,22 @@ import Booking from '../components/Booking.astro';
   <Footer/>
   <Booking/>
 </Base>
+<script>
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(entries => {
+      let cardIndex = 0;
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const block = entry.target as HTMLElement;
+        observer.unobserve(block);
+        if (block.closest('section')?.matches(':target, :has(:target)') || block.matches(':focus-within')) continue;
+        if (block.matches('.topics-grid > article')) {
+          block.style.setProperty('--reveal-delay', `${cardIndex++ * 60}ms`);
+        }
+        block.classList.add('reveal-once');
+        block.addEventListener('animationend', () => block.classList.remove('reveal-once'), { once: true });
+      }
+    });
+    document.querySelectorAll('[data-reveal]').forEach(block => observer.observe(block));
+  }
+</script>

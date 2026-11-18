@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Leaf from '../components/Leaf.astro';
+import Brand from '../components/Brand.astro';
 import { legalDocuments } from '../data/legal';
 import { site } from '../data/site';
 
@@ -12,7 +12,7 @@ const { document } = Astro.props;
 <Base title={document.title + ' — ' + site.name + ', психолог'} description={document.description} path={'/' + document.slug + '/'} noindex>
   <a class="skip" href="#main-content">Перейти к документу</a>
   <header class="legal-header">
-    <div class="doc-wrap"><a class="wordmark" href={import.meta.env.BASE_URL + ''}><Leaf width={25} />{site.name} <span>| {site.profession}</span></a><a class="back" href={import.meta.env.BASE_URL + ''}><span aria-hidden="true">←</span> На главную</a></div>
+    <div class="doc-wrap"><Brand /><a class="back" href={import.meta.env.BASE_URL + ''}><span aria-hidden="true">←</span> На главную</a></div>
   </header>
   <main id="main-content" class="doc-wrap doc-body">
     <h1>{document.title}</h1>
@@ -34,8 +34,6 @@ const { document } = Astro.props;
   .legal-header { background: #fff; border-bottom: 1px solid #d5e2ea; }
   .legal-header .doc-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
   .legal-header a { color: #203f5d; text-decoration: none; }
-  .wordmark { display: inline-flex; align-items: center; gap: .45rem; font: 1.7rem var(--serif, Georgia, serif); white-space: nowrap; }
-  .wordmark span { font: .88rem var(--sans, Arial, sans-serif); }
   .back { padding-block: .75rem; font-size: .91rem; }
   .doc-body { padding-block: clamp(2.5rem, 7vw, 5.5rem); color: #203f5d; }
   h1, h2 { font-family: var(--serif, Georgia, serif); font-weight: 400; line-height: 1.1; letter-spacing: -.035em; text-wrap: balance; overflow-wrap: anywhere; }

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
-    "build": "astro build",
+    "build": "astro build && node scripts/local-preview.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

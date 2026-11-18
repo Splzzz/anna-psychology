@@ -1,6 +1,8 @@
 node_modules/
 .astro/
 dist/
+/index.html
+/.local-preview/
 .env
 .env.local
 /Фото Анны/

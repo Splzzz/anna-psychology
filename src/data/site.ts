@@ -32,8 +32,7 @@ export const site: SiteSettings = {
   location: 'Тула',
   serviceArea: 'Россия',
   contacts: {
-    // Добавьте согласованный канал связи в формате { label, href }.
-    primary: null,
+    primary: { label: 'Telegram @Nnyrka', href: 'https://t.me/Nnyrka' },
     socials: [],
   },
   pricing,

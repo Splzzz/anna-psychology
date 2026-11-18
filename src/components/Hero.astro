@@ -39,10 +39,14 @@ import fallback from '../assets/photos/hero-720.jpg?url';
   .hero h1 em, .topics-heading em { font-weight: 500; }
   .hero h1 em { position: relative; color: #4b7599; }
   .hero h1 em svg { color: #8caec8; position: absolute; left: 0; width: 102%; height: 11px; bottom: -4px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 em svg { animation: underline-in 520ms ease-out; }
+  }
+  @keyframes underline-in { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
   .intro { font-size: clamp(14px, 1.06vw, 16px); line-height: 1.67; max-width: 536px; color: #405970; }
   .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; margin-top: 26px; }
   .learn { display: inline-flex; align-items: center; gap: 8px; font-weight: 580; padding: 10px 0; font-size: 13px; text-underline-offset: 5px; text-decoration-color: #92a8b9; }
-  .learn:hover { text-decoration-color: currentColor; }
+  @media (hover: hover) and (pointer: fine) { .learn:hover { text-decoration-color: currentColor; } }
   .facts { display: flex; align-items: center; flex-wrap: wrap; gap: 9px 16px; margin: 27px 0 0; padding: 0; list-style: none; color: #385773; font-size: 11.5px; font-weight: 550; }
   .facts li { display: flex; align-items: center; gap: 6px; }
   .facts li + li { padding-left: 14px; border-left: 1px solid #a9bdcc; }
