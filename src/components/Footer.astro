@@ -8,8 +8,6 @@ const year = new Date().getFullYear();
     <div><Brand /><p>Онлайн-консультации по России</p></div>
     <nav class="documents" aria-label="Правовые документы">
       <a href={import.meta.env.BASE_URL + 'privacy/'}>Политика обработки персональных данных</a>
-      <a href={import.meta.env.BASE_URL + 'consent/'}>Согласие на обработку персональных данных</a>
-      <a href={import.meta.env.BASE_URL + 'terms/'}>Условия оказания услуг</a>
     </nav>
     <div class="copy">{site.contacts.primary && <a href={site.contacts.primary.href}>{site.contacts.primary.label}</a>}<span>© {year} {site.name}</span></div>
   </div>

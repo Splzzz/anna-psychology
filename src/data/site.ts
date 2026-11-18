@@ -32,8 +32,8 @@ export const site: SiteSettings = {
   location: 'Тула',
   serviceArea: 'Россия',
   contacts: {
-    primary: { label: 'Telegram @Nnyrka', href: 'https://t.me/Nnyrka' },
-    socials: [],
+    primary: { label: 'ВКонтакте', href: 'https://vk.ru/anna_yakurnova' },
+    socials: [{ label: 'Telegram @Nnyrka', href: 'https://t.me/Nnyrka' }],
   },
   pricing,
   cta: {

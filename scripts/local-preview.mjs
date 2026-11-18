@@ -4,7 +4,7 @@ const project = new URL('../', import.meta.url);
 const dist = new URL('dist/', project);
 const preview = new URL('.local-preview/', project);
 const base = (process.env.SITE_BASE || '/').replace(/\/+$/, '') + '/';
-const documents = ['consent', 'privacy', 'terms'];
+const documents = ['privacy'];
 
 await mkdir(preview, { recursive: true });
 

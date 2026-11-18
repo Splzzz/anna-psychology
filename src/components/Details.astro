@@ -84,7 +84,7 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
         <p>{prices.regularDescription}</p>
       </article>
     </div>
-    <div class="conditions"><h3>Бронирование и перенос</h3><div class="prose">{prices.terms.map(text => <p>{text}</p>)}<a href={import.meta.env.BASE_URL + 'terms/'}>Условия оказания услуг</a></div></div>
+    <div class="conditions"><h3>Бронирование и перенос</h3><div class="prose">{prices.terms.map(text => <p>{text}</p>)}</div></div>
   </div>
 </section>
 
@@ -232,7 +232,6 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
   .conditions h3, .qualifications h3 { margin: 0; font-weight: 550; font-size: 1.12rem; }
   .conditions .prose { max-width: 70ch; font-size: .94rem; }
   .conditions p + p { margin-top: .4rem; }
-  .conditions a { display: inline-block; text-decoration: underline; text-underline-offset: .2em; margin-top: .6rem; }
   .education { background: #f0f5f8; }
   .qualifications { list-style: none; padding: 0; margin: 0; display: grid; }
   .qualifications li, .questions details { border-top: 1px solid #cbdbe6; }
