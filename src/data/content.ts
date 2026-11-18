@@ -1,8 +1,12 @@
 import { site, rubles } from './site';
 import bachelorImage from '../assets/education/bachelor.jpg?url';
+import bachelorFull from '../assets/education/bachelor-full.jpg?url';
 import counsellingImage from '../assets/education/counselling.jpg?url';
+import counsellingFull from '../assets/education/counselling-full.jpg?url';
 import panicImage from '../assets/education/panic.jpg?url';
+import panicFull from '../assets/education/panic-full.jpg?url';
 import supervisionImage from '../assets/education/supervision.jpg?url';
+import supervisionFull from '../assets/education/supervision-full.jpg?url';
 
 const { minutes, first, regular, discount } = site.pricing;
 
@@ -48,10 +52,10 @@ export const content = {
   education: {
     title: 'Моё образование и подготовка',
     records: [
-      { meta: 'Высшее образование · 2023', title: 'Бакалавриат по психологии', text: 'Тульский государственный университет', image: bachelorImage },
-      { meta: 'Профессиональная переподготовка · 2024', title: 'Психологическое консультирование', text: 'Квалификация «Психолог-консультант» · 550 часов', image: counsellingImage },
-      { meta: 'Повышение квалификации · 2025', title: 'Работа с паническими расстройствами и паническими атаками', text: 'Удостоверение · 120 часов', image: panicImage },
-      { meta: 'Супервизии · 2026', title: 'Курс демонстрационных супервизий', text: 'Институт семейной психологии · 6 академических часов', image: supervisionImage },
+      { meta: 'Высшее образование · 2023', title: 'Бакалавриат по психологии', text: 'Тульский государственный университет', image: bachelorImage, fullImage: bachelorFull },
+      { meta: 'Профессиональная переподготовка · 2024', title: 'Психологическое консультирование', text: 'Квалификация «Психолог-консультант» · 550 часов', image: counsellingImage, fullImage: counsellingFull },
+      { meta: 'Повышение квалификации · 2025', title: 'Работа с паническими расстройствами и паническими атаками', text: 'Удостоверение · 120 часов', image: panicImage, fullImage: panicFull },
+      { meta: 'Супервизии · 2026', title: 'Курс демонстрационных супервизий', text: 'Институт семейной психологии · 6 академических часов', image: supervisionImage, fullImage: supervisionFull },
     ],
   },
   faq: [
