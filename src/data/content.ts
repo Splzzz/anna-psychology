@@ -1,8 +1,4 @@
 import { site, rubles } from './site';
-import bachelorPdf from '../../Материалы для сайта/Scan 2026-11-17 21_22_45.pdf?url';
-import counsellingPdf from '../../Материалы для сайта/Scan 2026-11-17 21_24_25.pdf?url';
-import panicPdf from '../../Материалы для сайта/Scan 2026-11-17 21_25_27.pdf?url';
-import supervisionPdf from '../../Материалы для сайта/Сертификат супервизии.pdf?url';
 import bachelorImage from '../assets/education/bachelor.jpg?url';
 import counsellingImage from '../assets/education/counselling.jpg?url';
 import panicImage from '../assets/education/panic.jpg?url';
@@ -52,10 +48,10 @@ export const content = {
   education: {
     title: 'Моё образование и подготовка',
     records: [
-      { meta: 'Высшее образование · 2023', title: 'Бакалавриат по психологии', text: 'Тульский государственный университет', pdf: bachelorPdf, image: bachelorImage },
-      { meta: 'Профессиональная переподготовка · 2024', title: 'Психологическое консультирование', text: 'Квалификация «Психолог-консультант» · 550 часов', pdf: counsellingPdf, image: counsellingImage },
-      { meta: 'Повышение квалификации · 2025', title: 'Работа с паническими расстройствами и паническими атаками', text: 'Удостоверение · 120 часов', pdf: panicPdf, image: panicImage },
-      { meta: 'Супервизии · 2026', title: 'Курс демонстрационных супервизий', text: 'Институт семейной психологии · 6 академических часов', pdf: supervisionPdf, image: supervisionImage },
+      { meta: 'Высшее образование · 2023', title: 'Бакалавриат по психологии', text: 'Тульский государственный университет', image: bachelorImage },
+      { meta: 'Профессиональная переподготовка · 2024', title: 'Психологическое консультирование', text: 'Квалификация «Психолог-консультант» · 550 часов', image: counsellingImage },
+      { meta: 'Повышение квалификации · 2025', title: 'Работа с паническими расстройствами и паническими атаками', text: 'Удостоверение · 120 часов', image: panicImage },
+      { meta: 'Супервизии · 2026', title: 'Курс демонстрационных супервизий', text: 'Институт семейной психологии · 6 академических часов', image: supervisionImage },
     ],
   },
   faq: [

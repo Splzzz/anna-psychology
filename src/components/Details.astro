@@ -96,14 +96,14 @@ const contactHref = site.contacts.primary?.href ?? '#booking';
     </h2>
     <ul class="qualifications">
       {education.records.map(record => <li>
-        <a href={record.pdf} target="_blank" rel="noopener" aria-label={`Открыть PDF — ${record.title}`}>
+        <a href={record.image} target="_blank" rel="noopener" aria-label={`Открыть документ — ${record.title}`}>
           <img src={record.image} alt="" width="156" height="114" loading="lazy" decoding="async" />
         </a>
         <div>
           <small>{record.meta}</small>
           <h3>{record.title}</h3>
           <p>{record.text}</p>
-          <a href={record.pdf} target="_blank" rel="noopener" aria-label={`Открыть PDF — ${record.title}`}>Открыть PDF <span aria-hidden="true">↗</span></a>
+          <a href={record.image} target="_blank" rel="noopener" aria-label={`Открыть документ — ${record.title}`}>Открыть документ <span aria-hidden="true">↗</span></a>
         </div>
       </li>)}
     </ul>
